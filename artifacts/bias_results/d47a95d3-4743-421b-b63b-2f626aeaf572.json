@@ -1,0 +1,174 @@
+{
+  "id": "d47a95d3-4743-421b-b63b-2f626aeaf572",
+  "upload_id": "48c59f5f-934d-4017-b683-f5fef823170c",
+  "created_at_utc": "2026-04-01T17:09:09.244429+00:00",
+  "dataset_name": "telecom_zipcode_population.csv",
+  "bias_risk": "Low",
+  "trust_score": 100.0,
+  "sensitive_attributes": [
+    "zip_code"
+  ],
+  "metrics": {
+    "demographic_parity_difference": 0.0,
+    "disparate_impact_ratio": 1.0,
+    "statistical_parity": 1.0,
+    "representation_imbalance_score": 0.0,
+    "class_balance_ratio": 1.0,
+    "proxy_feature_count": 0
+  },
+  "insights": "TrustLens AI assessed this dataset as Low risk with a trust score of 100.0. Fairness indicators show demographic parity difference at 0.0 and disparate impact ratio at 1.0. No major underrepresented groups were detected. No strong proxy features were detected above the configured correlation threshold. Recommended mitigation focuses on improving representation balance, auditing high-correlation proxy columns, and reweighting or resampling during model training to maintain parity across groups.",
+  "recommendations": [
+    "Apply robust scaling or log transforms to heavily skewed numeric features before training."
+  ],
+  "details": {
+    "profile": {
+      "rows": 1671,
+      "columns": 2,
+      "column_types": {
+        "numeric": [
+          "zip_code",
+          "population"
+        ],
+        "categorical": []
+      },
+      "sensitive_attributes": [
+        "zip_code"
+      ],
+      "summary_statistics": {
+        "numeric": {
+          "zip_code": {
+            "mean": 93678.99222,
+            "median": 93664.0,
+            "std": 1817.219595,
+            "min": 90001.0,
+            "max": 96161.0,
+            "skewness": -0.364042
+          },
+          "population": {
+            "mean": 20276.384201,
+            "median": 14239.0,
+            "std": 20682.925734,
+            "min": 11.0,
+            "max": 105285.0,
+            "skewness": 1.048262
+          }
+        },
+        "categorical": {}
+      },
+      "missing_values": {
+        "missing_counts": {
+          "zip_code": 0,
+          "population": 0
+        },
+        "missing_percentages": {
+          "zip_code": 0.0,
+          "population": 0.0
+        },
+        "imputation_strategies": {
+          "zip_code": {
+            "strategy": "median",
+            "value": 93664.0
+          },
+          "population": {
+            "strategy": "median",
+            "value": 14239.0
+          }
+        }
+      }
+    },
+    "target_info": {
+      "target_column": null,
+      "target_available": false,
+      "reason": "No suitable target column found.",
+      "class_mapping": {}
+    },
+    "distribution_analysis": {
+      "by_attribute": {
+        "zip_code": {
+          "group_count": 4,
+          "expected_uniform_share_pct": 25.0,
+          "groups": [
+            {
+              "group": "(90000.999, 92269.0]",
+              "count": 418,
+              "percentage": 25.015
+            },
+            {
+              "group": "(92269.0, 93664.0]",
+              "count": 418,
+              "percentage": 25.015
+            },
+            {
+              "group": "(95408.0, 96161.0]",
+              "count": 418,
+              "percentage": 25.015
+            },
+            {
+              "group": "(93664.0, 95408.0]",
+              "count": 417,
+              "percentage": 24.9551
+            }
+          ]
+        }
+      },
+      "underrepresented_groups": [],
+      "overrepresented_groups": []
+    },
+    "group_comparison": {
+      "available": false,
+      "by_attribute": {}
+    },
+    "fairness_metrics": {
+      "demographic_parity_difference": 0.0,
+      "disparate_impact_ratio": 1.0,
+      "statistical_parity": 1.0,
+      "representation_imbalance_score": 0.0,
+      "by_sensitive_attribute": {},
+      "note": "Fairness metrics were neutral because no target column was available."
+    },
+    "proxy_bias": {
+      "threshold": 0.6,
+      "proxy_feature_count": 0,
+      "proxy_features": [],
+      "top_correlations": []
+    },
+    "class_imbalance": {
+      "available": false,
+      "majority_class_count": null,
+      "minority_class_count": null,
+      "class_balance_ratio": 1.0,
+      "positive_rate": null,
+      "message": "No suitable target column found."
+    },
+    "skewness": {
+      "columns": [
+        {
+          "column": "population",
+          "skewness": 1.048262,
+          "severity": "high"
+        },
+        {
+          "column": "zip_code",
+          "skewness": -0.364042,
+          "severity": "low"
+        }
+      ]
+    },
+    "trust": {
+      "trust_score": 100.0,
+      "risk_level": "Low",
+      "penalties": {
+        "demographic_parity_penalty": 0.0,
+        "disparate_impact_penalty": 0.0,
+        "statistical_parity_penalty": 0.0,
+        "representation_penalty": 0.0,
+        "class_imbalance_penalty": 0.0,
+        "proxy_bias_penalty": 0.0,
+        "group_distribution_penalty": 0.0
+      }
+    },
+    "explainability_source": "rule_based_fallback",
+    "explainability_note": null,
+    "generated_at_utc": "2026-04-01T17:09:09.244399+00:00"
+  }
+}

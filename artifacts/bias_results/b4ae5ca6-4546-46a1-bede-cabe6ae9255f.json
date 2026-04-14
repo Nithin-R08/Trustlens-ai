@@ -1,0 +1,1365 @@
+{
+  "id": "b4ae5ca6-4546-46a1-bede-cabe6ae9255f",
+  "upload_id": "d3a6f75c-2b7c-4578-8d50-a69407f3efec",
+  "created_at_utc": "2026-04-01T18:32:02.768723+00:00",
+  "dataset_name": "churn-bigml-20.csv",
+  "bias_risk": "High",
+  "trust_score": 29.52,
+  "sensitive_attributes": [
+    "number_vmail_messages",
+    "state"
+  ],
+  "metrics": {
+    "demographic_parity_difference": 0.4,
+    "disparate_impact_ratio": 0.0,
+    "statistical_parity": 0.934965,
+    "representation_imbalance_score": 0.303874,
+    "class_balance_ratio": 0.166084,
+    "proxy_feature_count": 1
+  },
+  "insights": "TrustLens AI assessed this dataset as High risk with a trust score of 29.52. Fairness indicators show demographic parity difference at 0.4 and disparate impact ratio at 0.0. Underrepresentation is most visible for `number_vmail_messages` = `19-30` (13.943% of the dataset). 1 potential proxy feature(s) were detected, which can indirectly encode sensitive traits. Recommended mitigation focuses on improving representation balance, auditing high-correlation proxy columns, and reweighting or resampling during model training to maintain parity across groups.",
+  "recommendations": [
+    "Balance the target classes using stratified resampling or class weights before model training.",
+    "Collect or synthesize additional records for underrepresented sensitive groups to reduce representation gaps.",
+    "Apply pre-processing reweighting and evaluate threshold optimization to reduce demographic parity gaps.",
+    "Investigate disparate impact by group and calibrate decision thresholds with fairness constraints.",
+    "Audit and remove or transform high-correlation proxy features that indirectly encode sensitive attributes.",
+    "Apply robust scaling or log transforms to heavily skewed numeric features before training."
+  ],
+  "details": {
+    "profile": {
+      "rows": 667,
+      "columns": 20,
+      "column_types": {
+        "numeric": [
+          "account_length",
+          "area_code",
+          "number_vmail_messages",
+          "total_day_minutes",
+          "total_day_calls",
+          "total_day_charge",
+          "total_eve_minutes",
+          "total_eve_calls",
+          "total_eve_charge",
+          "total_night_minutes",
+          "total_night_calls",
+          "total_night_charge",
+          "total_intl_minutes",
+          "total_intl_calls",
+          "total_intl_charge",
+          "customer_service_calls"
+        ],
+        "categorical": [
+          "state",
+          "international_plan",
+          "voice_mail_plan",
+          "churn"
+        ]
+      },
+      "sensitive_attributes": [
+        "number_vmail_messages",
+        "state"
+      ],
+      "summary_statistics": {
+        "numeric": {
+          "account_length": {
+            "mean": 102.841079,
+            "median": 102.0,
+            "std": 40.788869,
+            "min": 1.0,
+            "max": 232.0,
+            "skewness": 0.15339
+          },
+          "area_code": {
+            "mean": 436.157421,
+            "median": 415.0,
+            "std": 41.751971,
+            "min": 408.0,
+            "max": 510.0,
+            "skewness": 1.194561
+          },
+          "number_vmail_messages": {
+            "mean": 8.407796,
+            "median": 0.0,
+            "std": 13.983985,
+            "min": 0.0,
+            "max": 51.0,
+            "skewness": 1.238521
+          },
+          "total_day_minutes": {
+            "mean": 180.948126,
+            "median": 178.3,
+            "std": 55.467001,
+            "min": 25.9,
+            "max": 334.3,
+            "skewness": 0.057734
+          },
+          "total_day_calls": {
+            "mean": 100.937031,
+            "median": 101.0,
+            "std": 20.381495,
+            "min": 30.0,
+            "max": 165.0,
+            "skewness": -0.052777
+          },
+          "total_day_charge": {
+            "mean": 30.761769,
+            "median": 30.31,
+            "std": 9.429387,
+            "min": 4.4,
+            "max": 56.83,
+            "skewness": 0.057633
+          },
+          "total_eve_minutes": {
+            "mean": 203.355322,
+            "median": 203.7,
+            "std": 49.681984,
+            "min": 48.1,
+            "max": 361.8,
+            "skewness": -0.065132
+          },
+          "total_eve_calls": {
+            "mean": 100.476762,
+            "median": 101.0,
+            "std": 18.934052,
+            "min": 37.0,
+            "max": 168.0,
+            "skewness": -0.001172
+          },
+          "total_eve_charge": {
+            "mean": 17.285262,
+            "median": 17.31,
+            "std": 4.222991,
+            "min": 4.09,
+            "max": 30.75,
+            "skewness": -0.065191
+          },
+          "total_night_minutes": {
+            "mean": 199.685307,
+            "median": 201.6,
+            "std": 49.722616,
+            "min": 23.2,
+            "max": 367.7,
+            "skewness": -0.055652
+          },
+          "total_night_calls": {
+            "mean": 100.113943,
+            "median": 100.0,
+            "std": 20.157377,
+            "min": 42.0,
+            "max": 175.0,
+            "skewness": 0.111473
+          },
+          "total_night_charge": {
+            "mean": 8.985907,
+            "median": 9.07,
+            "std": 2.23775,
+            "min": 1.04,
+            "max": 16.55,
+            "skewness": -0.055615
+          },
+          "total_intl_minutes": {
+            "mean": 10.238381,
+            "median": 10.5,
+            "std": 2.805744,
+            "min": 0.0,
+            "max": 18.3,
+            "skewness": -0.326996
+          },
+          "total_intl_calls": {
+            "mean": 4.527736,
+            "median": 4.0,
+            "std": 2.48058,
+            "min": 0.0,
+            "max": 18.0,
+            "skewness": 1.179182
+          },
+          "total_intl_charge": {
+            "mean": 2.764948,
+            "median": 2.84,
+            "std": 0.757598,
+            "min": 0.0,
+            "max": 4.94,
+            "skewness": -0.327186
+          },
+          "customer_service_calls": {
+            "mean": 1.563718,
+            "median": 1.0,
+            "std": 1.332357,
+            "min": 0.0,
+            "max": 8.0,
+            "skewness": 1.078843
+          }
+        },
+        "categorical": {
+          "state": {
+            "unique_values": 51,
+            "top_values": [
+              {
+                "value": "AZ",
+                "count": 19
+              },
+              {
+                "value": "WA",
+                "count": 18
+              },
+              {
+                "value": "NM",
+                "count": 18
+              },
+              {
+                "value": "KS",
+                "count": 18
+              },
+              {
+                "value": "NJ",
+                "count": 18
+              },
+              {
+                "value": "WV",
+                "count": 18
+              },
+              {
+                "value": "ND",
+                "count": 18
+              },
+              {
+                "value": "IN",
+                "count": 17
+              }
+            ]
+          },
+          "international_plan": {
+            "unique_values": 2,
+            "top_values": [
+              {
+                "value": "No",
+                "count": 614
+              },
+              {
+                "value": "Yes",
+                "count": 53
+              }
+            ]
+          },
+          "voice_mail_plan": {
+            "unique_values": 2,
+            "top_values": [
+              {
+                "value": "No",
+                "count": 478
+              },
+              {
+                "value": "Yes",
+                "count": 189
+              }
+            ]
+          },
+          "churn": {
+            "unique_values": 2,
+            "top_values": [
+              {
+                "value": "False",
+                "count": 572
+              },
+              {
+                "value": "True",
+                "count": 95
+              }
+            ]
+          }
+        }
+      },
+      "missing_values": {
+        "missing_counts": {
+          "state": 0,
+          "account_length": 0,
+          "area_code": 0,
+          "international_plan": 0,
+          "voice_mail_plan": 0,
+          "number_vmail_messages": 0,
+          "total_day_minutes": 0,
+          "total_day_calls": 0,
+          "total_day_charge": 0,
+          "total_eve_minutes": 0,
+          "total_eve_calls": 0,
+          "total_eve_charge": 0,
+          "total_night_minutes": 0,
+          "total_night_calls": 0,
+          "total_night_charge": 0,
+          "total_intl_minutes": 0,
+          "total_intl_calls": 0,
+          "total_intl_charge": 0,
+          "customer_service_calls": 0,
+          "churn": 0
+        },
+        "missing_percentages": {
+          "state": 0.0,
+          "account_length": 0.0,
+          "area_code": 0.0,
+          "international_plan": 0.0,
+          "voice_mail_plan": 0.0,
+          "number_vmail_messages": 0.0,
+          "total_day_minutes": 0.0,
+          "total_day_calls": 0.0,
+          "total_day_charge": 0.0,
+          "total_eve_minutes": 0.0,
+          "total_eve_calls": 0.0,
+          "total_eve_charge": 0.0,
+          "total_night_minutes": 0.0,
+          "total_night_calls": 0.0,
+          "total_night_charge": 0.0,
+          "total_intl_minutes": 0.0,
+          "total_intl_calls": 0.0,
+          "total_intl_charge": 0.0,
+          "customer_service_calls": 0.0,
+          "churn": 0.0
+        },
+        "imputation_strategies": {
+          "account_length": {
+            "strategy": "median",
+            "value": 102.0
+          },
+          "area_code": {
+            "strategy": "median",
+            "value": 415.0
+          },
+          "number_vmail_messages": {
+            "strategy": "median",
+            "value": 0.0
+          },
+          "total_day_minutes": {
+            "strategy": "median",
+            "value": 178.3
+          },
+          "total_day_calls": {
+            "strategy": "median",
+            "value": 101.0
+          },
+          "total_day_charge": {
+            "strategy": "median",
+            "value": 30.31
+          },
+          "total_eve_minutes": {
+            "strategy": "median",
+            "value": 203.7
+          },
+          "total_eve_calls": {
+            "strategy": "median",
+            "value": 101.0
+          },
+          "total_eve_charge": {
+            "strategy": "median",
+            "value": 17.31
+          },
+          "total_night_minutes": {
+            "strategy": "median",
+            "value": 201.6
+          },
+          "total_night_calls": {
+            "strategy": "median",
+            "value": 100.0
+          },
+          "total_night_charge": {
+            "strategy": "median",
+            "value": 9.07
+          },
+          "total_intl_minutes": {
+            "strategy": "median",
+            "value": 10.5
+          },
+          "total_intl_calls": {
+            "strategy": "median",
+            "value": 4.0
+          },
+          "total_intl_charge": {
+            "strategy": "median",
+            "value": 2.84
+          },
+          "customer_service_calls": {
+            "strategy": "median",
+            "value": 1.0
+          },
+          "state": {
+            "strategy": "mode",
+            "value": "AZ"
+          },
+          "international_plan": {
+            "strategy": "mode",
+            "value": "No"
+          },
+          "voice_mail_plan": {
+            "strategy": "mode",
+            "value": "No"
+          },
+          "churn": {
+            "strategy": "mode",
+            "value": "False"
+          }
+        }
+      }
+    },
+    "target_info": {
+      "target_column": "churn",
+      "target_available": true,
+      "reason": "Categorical target encoded using least frequent class as positive class.",
+      "class_mapping": {
+        "positive": "True",
+        "negative": "all_other_values"
+      }
+    },
+    "distribution_analysis": {
+      "by_attribute": {
+        "number_vmail_messages": {
+          "group_count": 4,
+          "expected_uniform_share_pct": 25.0,
+          "groups": [
+            {
+              "group": "<=18",
+              "count": 489,
+              "percentage": 73.3133
+            },
+            {
+              "group": "19-30",
+              "count": 93,
+              "percentage": 13.943
+            },
+            {
+              "group": "31-45",
+              "count": 80,
+              "percentage": 11.994
+            },
+            {
+              "group": "46-60",
+              "count": 5,
+              "percentage": 0.7496
+            }
+          ]
+        },
+        "state": {
+          "group_count": 51,
+          "expected_uniform_share_pct": 1.9608,
+          "groups": [
+            {
+              "group": "AZ",
+              "count": 19,
+              "percentage": 2.8486
+            },
+            {
+              "group": "WA",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "NM",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "KS",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "NJ",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "WV",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "ND",
+              "count": 18,
+              "percentage": 2.6987
+            },
+            {
+              "group": "IN",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "ID",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "WI",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "TX",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "MS",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "RI",
+              "count": 17,
+              "percentage": 2.5487
+            },
+            {
+              "group": "LA",
+              "count": 16,
+              "percentage": 2.3988
+            },
+            {
+              "group": "VT",
+              "count": 16,
+              "percentage": 2.3988
+            },
+            {
+              "group": "KY",
+              "count": 16,
+              "percentage": 2.3988
+            },
+            {
+              "group": "NE",
+              "count": 16,
+              "percentage": 2.3988
+            },
+            {
+              "group": "OR",
+              "count": 16,
+              "percentage": 2.3988
+            },
+            {
+              "group": "NY",
+              "count": 15,
+              "percentage": 2.2489
+            },
+            {
+              "group": "MI",
+              "count": 15,
+              "percentage": 2.2489
+            },
+            {
+              "group": "MT",
+              "count": 15,
+              "percentage": 2.2489
+            },
+            {
+              "group": "CT",
+              "count": 15,
+              "percentage": 2.2489
+            },
+            {
+              "group": "MN",
+              "count": 14,
+              "percentage": 2.099
+            },
+            {
+              "group": "AL",
+              "count": 14,
+              "percentage": 2.099
+            },
+            {
+              "group": "MA",
+              "count": 13,
+              "percentage": 1.949
+            },
+            {
+              "group": "NH",
+              "count": 13,
+              "percentage": 1.949
+            },
+            {
+              "group": "ME",
+              "count": 13,
+              "percentage": 1.949
+            },
+            {
+              "group": "IL",
+              "count": 13,
+              "percentage": 1.949
+            },
+            {
+              "group": "OH",
+              "count": 12,
+              "percentage": 1.7991
+            },
+            {
+              "group": "MO",
+              "count": 12,
+              "percentage": 1.7991
+            },
+            {
+              "group": "NC",
+              "count": 12,
+              "percentage": 1.7991
+            },
+            {
+              "group": "UT",
+              "count": 12,
+              "percentage": 1.7991
+            },
+            {
+              "group": "TN",
+              "count": 12,
+              "percentage": 1.7991
+            },
+            {
+              "group": "SC",
+              "count": 11,
+              "percentage": 1.6492
+            },
+            {
+              "group": "WY",
+              "count": 11,
+              "percentage": 1.6492
+            },
+            {
+              "group": "SD",
+              "count": 11,
+              "percentage": 1.6492
+            },
+            {
+              "group": "VA",
+              "count": 10,
+              "percentage": 1.4993
+            },
+            {
+              "group": "CA",
+              "count": 10,
+              "percentage": 1.4993
+            },
+            {
+              "group": "DE",
+              "count": 10,
+              "percentage": 1.4993
+            },
+            {
+              "group": "MD",
+              "count": 10,
+              "percentage": 1.4993
+            },
+            {
+              "group": "HI",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "AK",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "FL",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "OK",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "DC",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "PA",
+              "count": 9,
+              "percentage": 1.3493
+            },
+            {
+              "group": "AR",
+              "count": 8,
+              "percentage": 1.1994
+            },
+            {
+              "group": "CO",
+              "count": 7,
+              "percentage": 1.0495
+            },
+            {
+              "group": "IA",
+              "count": 6,
+              "percentage": 0.8996
+            },
+            {
+              "group": "NV",
+              "count": 5,
+              "percentage": 0.7496
+            },
+            {
+              "group": "GA",
+              "count": 5,
+              "percentage": 0.7496
+            }
+          ]
+        }
+      },
+      "underrepresented_groups": [
+        {
+          "attribute": "number_vmail_messages",
+          "group": "19-30",
+          "count": 93,
+          "percentage": 13.943
+        },
+        {
+          "attribute": "number_vmail_messages",
+          "group": "31-45",
+          "count": 80,
+          "percentage": 11.994
+        },
+        {
+          "attribute": "number_vmail_messages",
+          "group": "46-60",
+          "count": 5,
+          "percentage": 0.7496
+        },
+        {
+          "attribute": "state",
+          "group": "VA",
+          "count": 10,
+          "percentage": 1.4993
+        },
+        {
+          "attribute": "state",
+          "group": "CA",
+          "count": 10,
+          "percentage": 1.4993
+        },
+        {
+          "attribute": "state",
+          "group": "DE",
+          "count": 10,
+          "percentage": 1.4993
+        },
+        {
+          "attribute": "state",
+          "group": "MD",
+          "count": 10,
+          "percentage": 1.4993
+        },
+        {
+          "attribute": "state",
+          "group": "HI",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "AK",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "FL",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "OK",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "DC",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "PA",
+          "count": 9,
+          "percentage": 1.3493
+        },
+        {
+          "attribute": "state",
+          "group": "AR",
+          "count": 8,
+          "percentage": 1.1994
+        },
+        {
+          "attribute": "state",
+          "group": "CO",
+          "count": 7,
+          "percentage": 1.0495
+        },
+        {
+          "attribute": "state",
+          "group": "IA",
+          "count": 6,
+          "percentage": 0.8996
+        },
+        {
+          "attribute": "state",
+          "group": "NV",
+          "count": 5,
+          "percentage": 0.7496
+        },
+        {
+          "attribute": "state",
+          "group": "GA",
+          "count": 5,
+          "percentage": 0.7496
+        }
+      ],
+      "overrepresented_groups": [
+        {
+          "attribute": "number_vmail_messages",
+          "group": "<=18",
+          "count": 489,
+          "percentage": 73.3133
+        },
+        {
+          "attribute": "state",
+          "group": "AZ",
+          "count": 19,
+          "percentage": 2.8486
+        },
+        {
+          "attribute": "state",
+          "group": "WA",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "NM",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "KS",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "NJ",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "WV",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "ND",
+          "count": 18,
+          "percentage": 2.6987
+        },
+        {
+          "attribute": "state",
+          "group": "IN",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "ID",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "WI",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "TX",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "MS",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "RI",
+          "count": 17,
+          "percentage": 2.5487
+        },
+        {
+          "attribute": "state",
+          "group": "LA",
+          "count": 16,
+          "percentage": 2.3988
+        },
+        {
+          "attribute": "state",
+          "group": "VT",
+          "count": 16,
+          "percentage": 2.3988
+        },
+        {
+          "attribute": "state",
+          "group": "KY",
+          "count": 16,
+          "percentage": 2.3988
+        },
+        {
+          "attribute": "state",
+          "group": "NE",
+          "count": 16,
+          "percentage": 2.3988
+        },
+        {
+          "attribute": "state",
+          "group": "OR",
+          "count": 16,
+          "percentage": 2.3988
+        }
+      ]
+    },
+    "group_comparison": {
+      "available": true,
+      "by_attribute": {
+        "number_vmail_messages": {
+          "groups": [
+            {
+              "group": "19-30",
+              "count": 93,
+              "positive_rate": 0.075269
+            },
+            {
+              "group": "31-45",
+              "count": 80,
+              "positive_rate": 0.075
+            },
+            {
+              "group": "46-60",
+              "count": 5,
+              "positive_rate": 0.2
+            },
+            {
+              "group": "<=18",
+              "count": 489,
+              "positive_rate": 0.165644
+            }
+          ]
+        },
+        "state": {
+          "groups": [
+            {
+              "group": "AK",
+              "count": 9,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "AL",
+              "count": 14,
+              "positive_rate": 0.071429
+            },
+            {
+              "group": "AR",
+              "count": 8,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "AZ",
+              "count": 19,
+              "positive_rate": 0.052632
+            },
+            {
+              "group": "CA",
+              "count": 10,
+              "positive_rate": 0.4
+            },
+            {
+              "group": "CO",
+              "count": 7,
+              "positive_rate": 0.285714
+            },
+            {
+              "group": "CT",
+              "count": 15,
+              "positive_rate": 0.066667
+            },
+            {
+              "group": "DC",
+              "count": 9,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "DE",
+              "count": 10,
+              "positive_rate": 0.1
+            },
+            {
+              "group": "FL",
+              "count": 9,
+              "positive_rate": 0.111111
+            },
+            {
+              "group": "GA",
+              "count": 5,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "HI",
+              "count": 9,
+              "positive_rate": 0.111111
+            },
+            {
+              "group": "IA",
+              "count": 6,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "ID",
+              "count": 17,
+              "positive_rate": 0.235294
+            },
+            {
+              "group": "IL",
+              "count": 13,
+              "positive_rate": 0.076923
+            },
+            {
+              "group": "IN",
+              "count": 17,
+              "positive_rate": 0.176471
+            },
+            {
+              "group": "KS",
+              "count": 18,
+              "positive_rate": 0.166667
+            },
+            {
+              "group": "KY",
+              "count": 16,
+              "positive_rate": 0.125
+            },
+            {
+              "group": "LA",
+              "count": 16,
+              "positive_rate": 0.0625
+            },
+            {
+              "group": "MA",
+              "count": 13,
+              "positive_rate": 0.230769
+            },
+            {
+              "group": "MD",
+              "count": 10,
+              "positive_rate": 0.3
+            },
+            {
+              "group": "ME",
+              "count": 13,
+              "positive_rate": 0.153846
+            },
+            {
+              "group": "MI",
+              "count": 15,
+              "positive_rate": 0.2
+            },
+            {
+              "group": "MN",
+              "count": 14,
+              "positive_rate": 0.142857
+            },
+            {
+              "group": "MO",
+              "count": 12,
+              "positive_rate": 0.166667
+            },
+            {
+              "group": "MS",
+              "count": 17,
+              "positive_rate": 0.176471
+            },
+            {
+              "group": "MT",
+              "count": 15,
+              "positive_rate": 0.266667
+            },
+            {
+              "group": "NC",
+              "count": 12,
+              "positive_rate": 0.166667
+            },
+            {
+              "group": "ND",
+              "count": 18,
+              "positive_rate": 0.111111
+            },
+            {
+              "group": "NE",
+              "count": 16,
+              "positive_rate": 0.0625
+            },
+            {
+              "group": "NH",
+              "count": 13,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "NJ",
+              "count": 18,
+              "positive_rate": 0.222222
+            },
+            {
+              "group": "NM",
+              "count": 18,
+              "positive_rate": 0.111111
+            },
+            {
+              "group": "NV",
+              "count": 5,
+              "positive_rate": 0.2
+            },
+            {
+              "group": "NY",
+              "count": 15,
+              "positive_rate": 0.2
+            },
+            {
+              "group": "OH",
+              "count": 12,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "OK",
+              "count": 9,
+              "positive_rate": 0.222222
+            },
+            {
+              "group": "OR",
+              "count": 16,
+              "positive_rate": 0.25
+            },
+            {
+              "group": "PA",
+              "count": 9,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "RI",
+              "count": 17,
+              "positive_rate": 0.176471
+            },
+            {
+              "group": "SC",
+              "count": 11,
+              "positive_rate": 0.272727
+            },
+            {
+              "group": "SD",
+              "count": 11,
+              "positive_rate": 0.181818
+            },
+            {
+              "group": "TN",
+              "count": 12,
+              "positive_rate": 0.0
+            },
+            {
+              "group": "TX",
+              "count": 17,
+              "positive_rate": 0.117647
+            },
+            {
+              "group": "UT",
+              "count": 12,
+              "positive_rate": 0.166667
+            },
+            {
+              "group": "VA",
+              "count": 10,
+              "positive_rate": 0.1
+            },
+            {
+              "group": "VT",
+              "count": 16,
+              "positive_rate": 0.125
+            },
+            {
+              "group": "WA",
+              "count": 18,
+              "positive_rate": 0.222222
+            },
+            {
+              "group": "WI",
+              "count": 17,
+              "positive_rate": 0.176471
+            },
+            {
+              "group": "WV",
+              "count": 18,
+              "positive_rate": 0.166667
+            },
+            {
+              "group": "WY",
+              "count": 11,
+              "positive_rate": 0.090909
+            }
+          ]
+        }
+      }
+    },
+    "fairness_metrics": {
+      "demographic_parity_difference": 0.4,
+      "disparate_impact_ratio": 0.0,
+      "statistical_parity": 0.934965,
+      "representation_imbalance_score": 0.303874,
+      "by_sensitive_attribute": {
+        "number_vmail_messages": {
+          "demographic_parity_difference": 0.125,
+          "disparate_impact_ratio": 0.375,
+          "statistical_parity": 0.946156,
+          "representation_imbalance_score": 0.483133
+        },
+        "state": {
+          "demographic_parity_difference": 0.4,
+          "disparate_impact_ratio": 0.0,
+          "statistical_parity": 0.923775,
+          "representation_imbalance_score": 0.124614
+        }
+      }
+    },
+    "proxy_bias": {
+      "threshold": 0.6,
+      "proxy_feature_count": 1,
+      "proxy_features": [
+        {
+          "sensitive_attribute": "number_vmail_messages",
+          "feature": "voice_mail_plan",
+          "correlation": 0.956168,
+          "abs_correlation": 0.956168
+        }
+      ],
+      "top_correlations": [
+        {
+          "sensitive_attribute": "number_vmail_messages",
+          "feature": "voice_mail_plan",
+          "correlation": 0.956168,
+          "abs_correlation": 0.956168
+        }
+      ]
+    },
+    "class_imbalance": {
+      "available": true,
+      "majority_class_count": 572,
+      "minority_class_count": 95,
+      "class_balance_ratio": 0.166084,
+      "positive_rate": 0.142429,
+      "message": "Class distribution computed from inferred target column."
+    },
+    "skewness": {
+      "columns": [
+        {
+          "column": "number_vmail_messages",
+          "skewness": 1.238521,
+          "severity": "high"
+        },
+        {
+          "column": "area_code",
+          "skewness": 1.194561,
+          "severity": "high"
+        },
+        {
+          "column": "total_intl_calls",
+          "skewness": 1.179182,
+          "severity": "high"
+        },
+        {
+          "column": "customer_service_calls",
+          "skewness": 1.078843,
+          "severity": "high"
+        },
+        {
+          "column": "total_intl_charge",
+          "skewness": -0.327186,
+          "severity": "low"
+        },
+        {
+          "column": "total_intl_minutes",
+          "skewness": -0.326996,
+          "severity": "low"
+        },
+        {
+          "column": "account_length",
+          "skewness": 0.15339,
+          "severity": "low"
+        },
+        {
+          "column": "total_night_calls",
+          "skewness": 0.111473,
+          "severity": "low"
+        },
+        {
+          "column": "total_eve_charge",
+          "skewness": -0.065191,
+          "severity": "low"
+        },
+        {
+          "column": "total_eve_minutes",
+          "skewness": -0.065132,
+          "severity": "low"
+        },
+        {
+          "column": "total_day_minutes",
+          "skewness": 0.057734,
+          "severity": "low"
+        },
+        {
+          "column": "total_day_charge",
+          "skewness": 0.057633,
+          "severity": "low"
+        },
+        {
+          "column": "total_night_minutes",
+          "skewness": -0.055652,
+          "severity": "low"
+        },
+        {
+          "column": "total_night_charge",
+          "skewness": -0.055615,
+          "severity": "low"
+        },
+        {
+          "column": "total_day_calls",
+          "skewness": -0.052777,
+          "severity": "low"
+        },
+        {
+          "column": "total_eve_calls",
+          "skewness": -0.001172,
+          "severity": "low"
+        }
+      ]
+    },
+    "trust": {
+      "trust_score": 29.52,
+      "risk_level": "High",
+      "penalties": {
+        "demographic_parity_penalty": 14.0,
+        "disparate_impact_penalty": 25.0,
+        "statistical_parity_penalty": 0.0,
+        "representation_penalty": 5.4697,
+        "class_imbalance_penalty": 12.5087,
+        "proxy_bias_penalty": 1.5,
+        "group_distribution_penalty": 12.0
+      }
+    },
+    "explainability_source": "rule_based_fallback",
+    "explainability_note": null,
+    "generated_at_utc": "2026-04-01T18:32:02.768683+00:00"
+  }
+}

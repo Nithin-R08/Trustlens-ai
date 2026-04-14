@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #131313;
+  --void-soft: #1c1b1b;
+  --slate-light: #bbc9cf;
+  --neon: #a4e6ff;
+  --neon-strong: #00d1ff;
+  --violet: #dcb8ff;
+  --alert: #ffb4ab;
+}
+
+@layer base {
+  * {
+    @apply border-white/5;
+  }
+
+  body {
+    @apply min-h-screen bg-void text-white antialiased;
+    font-family: var(--font-body), "Inter", sans-serif;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(119, 1, 208, 0.2), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(0, 209, 255, 0.15), transparent 40%),
+      linear-gradient(160deg, #131313 0%, #101011 100%);
+  }
+}
+
+@layer components {
+  .font-headline {
+    font-family: var(--font-headline), "Space Grotesk", sans-serif;
+  }
+
+  .bg-void {
+    background-color: var(--void);
+  }
+
+  .bg-void-soft {
+    background-color: var(--void-soft);
+  }
+
+  .text-slate-light {
+    color: var(--slate-light);
+  }
+
+  .text-neon {
+    color: var(--neon);
+  }
+
+  .text-alert {
+    color: var(--alert);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full border border-neon/40 bg-neon-strong px-7 py-3 font-headline text-sm font-bold uppercase tracking-[0.16em] text-[#012733] transition duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(0,209,255,0.35)];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-neon/35 bg-transparent px-7 py-3 font-headline text-sm font-semibold uppercase tracking-[0.16em] text-neon transition duration-300 hover:bg-neon/10;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-neon/10 bg-white/[0.06] backdrop-blur-xl transition duration-300 hover:border-neon/25 hover:shadow-[0_0_32px_rgba(164,230,255,0.12)];
+  }
+
+  .section-shell {
+    @apply px-4 py-20 sm:px-8;
+  }
+
+  .section-kicker {
+    @apply font-headline text-xs uppercase tracking-[0.28em] text-neon/80;
+  }
+
+  .section-title {
+    @apply mt-4 text-center font-headline text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl;
+  }
+
+  .metric-tile {
+    @apply rounded-xl border border-white/10 bg-void-soft/80 p-4;
+  }
+
+  .metric-label {
+    @apply font-headline text-[0.65rem] uppercase tracking-[0.18em] text-slate-light/70;
+  }
+
+  .metric-value {
+    @apply mt-2 font-headline text-3xl font-bold;
+  }
+}
