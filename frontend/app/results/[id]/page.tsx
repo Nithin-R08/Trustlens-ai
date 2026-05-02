@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Footer } from "../../../components/Footer";
 import { NavBar } from "../../../components/NavBar";
-import { fetchResultById, getReportUrl, type TrustLensResult } from "../../../lib/api";
+import { fetchResultById, getReportUrl, isApiConfigured, type TrustLensResult } from "../../../lib/api";
 
 function MetricCard({ label, value }: { label: string; value: string | number }) {
   return (
@@ -67,6 +67,9 @@ export default function ResultDetailsPage() {
     };
   }, [result]);
 
+  const jsonReportUrl = result ? getReportUrl(result.id, "json") : "";
+  const pdfReportUrl = result && isApiConfigured() ? getReportUrl(result.id, "pdf") : "";
+
   return (
     <div className="min-h-screen bg-void text-white">
       <NavBar active="results" />
@@ -122,12 +125,14 @@ export default function ResultDetailsPage() {
                   <p className="section-kicker">Report</p>
                   <h2 className="mt-3 font-headline text-2xl font-bold">Download Output</h2>
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <a href={getReportUrl(result.id, "json")} className="btn-secondary" target="_blank" rel="noreferrer">
+                    <a href={jsonReportUrl} className="btn-secondary" target="_blank" rel="noreferrer">
                       JSON Report
                     </a>
-                    <a href={getReportUrl(result.id, "pdf")} className="btn-primary" target="_blank" rel="noreferrer">
-                      PDF Report
-                    </a>
+                    {pdfReportUrl ? (
+                      <a href={pdfReportUrl} className="btn-primary" target="_blank" rel="noreferrer">
+                        PDF Report
+                      </a>
+                    ) : null}
                   </div>
                 </article>
               </div>
@@ -170,4 +175,3 @@ export default function ResultDetailsPage() {
     </div>
   );
 }
-

@@ -21,8 +21,11 @@ export type TrustLensResult = {
   details?: Record<string, unknown>;
 };
 
+import { analyzeDatasetLocally } from "./local-analysis";
+
 const LOCAL_API_BASE = "http://127.0.0.1:8000";
 const LOCAL_HOSTNAMES = new Set(["localhost", "127.0.0.1", "0.0.0.0", "::1"]);
+const RESULT_STORAGE_PREFIX = "trustlens-result:";
 
 function trimTrailingSlash(value: string) {
   return value.replace(/\/+$/, "");
@@ -58,6 +61,25 @@ function requireApiBaseUrl() {
   return apiBaseUrl;
 }
 
+export function isApiConfigured() {
+  return Boolean(getApiBaseUrl());
+}
+
+function rememberResult(result: TrustLensResult) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  window.sessionStorage.setItem(`${RESULT_STORAGE_PREFIX}${result.id}`, JSON.stringify(result));
+}
+
+function readRememberedResult(id: string) {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  const stored = window.sessionStorage.getItem(`${RESULT_STORAGE_PREFIX}${id}`);
+  return stored ? (JSON.parse(stored) as TrustLensResult) : null;
+}
+
 async function parseError(response: Response) {
   try {
     const payload = (await response.json()) as { detail?: string };
@@ -81,6 +103,12 @@ async function safeFetch(input: RequestInfo | URL, init?: RequestInit) {
 }
 
 export async function analyzeDataset(file: File): Promise<TrustLensResult> {
+  if (!getApiBaseUrl()) {
+    const localResult = await analyzeDatasetLocally(file);
+    rememberResult(localResult);
+    return localResult;
+  }
+
   const formData = new FormData();
   formData.append("file", file);
 
@@ -93,10 +121,20 @@ export async function analyzeDataset(file: File): Promise<TrustLensResult> {
     throw new Error(await parseError(response));
   }
 
-  return (await response.json()) as TrustLensResult;
+  const result = (await response.json()) as TrustLensResult;
+  rememberResult(result);
+  return result;
 }
 
 export async function fetchResultById(id: string): Promise<TrustLensResult> {
+  if (!getApiBaseUrl()) {
+    const localResult = readRememberedResult(id);
+    if (localResult) {
+      return localResult;
+    }
+    throw new Error("This browser session does not have that local analysis result. Please upload the dataset again.");
+  }
+
   const response = await safeFetch(`${requireApiBaseUrl()}/results/${id}`, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(await parseError(response));
@@ -105,5 +143,15 @@ export async function fetchResultById(id: string): Promise<TrustLensResult> {
 }
 
 export function getReportUrl(id: string, format: "json" | "pdf") {
-  return `${requireApiBaseUrl()}/results/${id}/report?format=${format}`;
+  const apiBaseUrl = getApiBaseUrl();
+  if (apiBaseUrl) {
+    return `${apiBaseUrl}/results/${id}/report?format=${format}`;
+  }
+
+  const localResult = readRememberedResult(id);
+  if (!localResult || format === "pdf") {
+    return "";
+  }
+
+  return `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(localResult, null, 2))}`;
 }
