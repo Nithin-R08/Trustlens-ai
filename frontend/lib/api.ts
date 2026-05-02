@@ -1,4 +1,4 @@
-export type TrustLensMetrics = {
+﻿export type TrustLensMetrics = {
   demographic_parity_difference: number;
   disparate_impact_ratio: number;
   statistical_parity: number;
@@ -21,10 +21,41 @@ export type TrustLensResult = {
   details?: Record<string, unknown>;
 };
 
-const DEFAULT_API_BASE = "http://127.0.0.1:8000";
+const LOCAL_API_BASE = "http://127.0.0.1:8000";
+const LOCAL_HOSTNAMES = new Set(["localhost", "127.0.0.1", "0.0.0.0", "::1"]);
+
+function trimTrailingSlash(value: string) {
+  return value.replace(/\/+$/, "");
+}
+
+function isLocalBrowserHost() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return LOCAL_HOSTNAMES.has(window.location.hostname);
+}
 
 export function getApiBaseUrl() {
-  return process.env.NEXT_PUBLIC_API_BASE_URL ?? DEFAULT_API_BASE;
+  const configured = process.env.NEXT_PUBLIC_API_BASE_URL?.trim();
+  if (configured) {
+    return trimTrailingSlash(configured);
+  }
+
+  if (process.env.NODE_ENV !== "production" || isLocalBrowserHost()) {
+    return LOCAL_API_BASE;
+  }
+
+  return "";
+}
+
+function requireApiBaseUrl() {
+  const apiBaseUrl = getApiBaseUrl();
+  if (!apiBaseUrl) {
+    throw new Error(
+      "Backend API URL is not configured. In Vercel, add NEXT_PUBLIC_API_BASE_URL with your deployed FastAPI backend URL, then redeploy."
+    );
+  }
+  return apiBaseUrl;
 }
 
 async function parseError(response: Response) {
@@ -36,11 +67,24 @@ async function parseError(response: Response) {
   }
 }
 
+async function safeFetch(input: RequestInfo | URL, init?: RequestInit) {
+  try {
+    return await fetch(input, init);
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(
+        "Could not reach the TrustLens backend API. Check that NEXT_PUBLIC_API_BASE_URL points to a live FastAPI server and that CORS is enabled."
+      );
+    }
+    throw error;
+  }
+}
+
 export async function analyzeDataset(file: File): Promise<TrustLensResult> {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${getApiBaseUrl()}/analyze`, {
+  const response = await safeFetch(`${requireApiBaseUrl()}/analyze`, {
     method: "POST",
     body: formData
   });
@@ -53,7 +97,7 @@ export async function analyzeDataset(file: File): Promise<TrustLensResult> {
 }
 
 export async function fetchResultById(id: string): Promise<TrustLensResult> {
-  const response = await fetch(`${getApiBaseUrl()}/results/${id}`, { cache: "no-store" });
+  const response = await safeFetch(`${requireApiBaseUrl()}/results/${id}`, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(await parseError(response));
   }
@@ -61,6 +105,5 @@ export async function fetchResultById(id: string): Promise<TrustLensResult> {
 }
 
 export function getReportUrl(id: string, format: "json" | "pdf") {
-  return `${getApiBaseUrl()}/results/${id}/report?format=${format}`;
+  return `${requireApiBaseUrl()}/results/${id}/report?format=${format}`;
 }
-
