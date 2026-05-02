@@ -54,10 +54,10 @@ API endpoints:
 
 Recommended Vercel project settings:
 
-- Root directory: `frontend`
+- Root directory: `./`
 - Install command: `npm install`
 - Build command: `npm run build`
-- Output directory: leave blank / use Vercel default
+- Output directory: `frontend/.next`
 
 Add this Vercel environment variable:
 
