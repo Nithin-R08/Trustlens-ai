@@ -83,4 +83,4 @@ If you want to enable the Spline React runtime later, set:
 NEXT_PUBLIC_ENABLE_SPLINE_RUNTIME=1
 ```
 
-For Vercel, keep it disabled unless you specifically need runtime interactions.
+For Vercel, keep it disabled unless you specifically need runtime interactions
