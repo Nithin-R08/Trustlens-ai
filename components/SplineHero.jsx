@@ -127,9 +127,20 @@ export default function SplineHero() {
 
   return (
     <header className="relative h-[100vh] min-h-[100vh] w-full overflow-hidden">
+      <div className="trustlens-hero-fallback absolute inset-0 z-0" aria-hidden="true">
+        <div className="trustlens-grid" />
+        <div className="trustlens-core">
+          <span className="trustlens-ring trustlens-ring-a" />
+          <span className="trustlens-ring trustlens-ring-b" />
+          <span className="trustlens-ring trustlens-ring-c" />
+          <span className="trustlens-prism" />
+          <span className="trustlens-scanline" />
+        </div>
+      </div>
+
       {/* Spline scene – z-0, receives mouse events when overlay is disabled */}
-      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
-        <div className="absolute inset-0 scale-[1.1] translate-y-[10%] sm:scale-[1.05] sm:translate-y-[6%]">
+      <div className="absolute inset-0 z-[1] h-full w-full overflow-hidden opacity-90 mix-blend-screen">
+        <div className="absolute inset-0 scale-[1.08] sm:scale-[1.03]">
           {useIframeFallback ? (
             <iframe
               src={SPLINE_EMBED_URL}
@@ -188,6 +199,140 @@ export default function SplineHero() {
           Get Started
         </Link>
       </div>
+
+      <style jsx>{`
+        .trustlens-hero-fallback {
+          background:
+            radial-gradient(circle at 50% 42%, rgba(0, 209, 255, 0.22), transparent 22rem),
+            radial-gradient(circle at 50% 55%, rgba(164, 230, 255, 0.12), transparent 30rem),
+            linear-gradient(180deg, #020404 0%, #050606 48%, #101111 100%);
+          perspective: 1200px;
+        }
+
+        .trustlens-grid {
+          position: absolute;
+          inset: auto -10% -18% -10%;
+          height: 45%;
+          background-image:
+            linear-gradient(rgba(164, 230, 255, 0.18) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(164, 230, 255, 0.18) 1px, transparent 1px);
+          background-size: 72px 72px;
+          transform: rotateX(68deg);
+          transform-origin: center bottom;
+          opacity: 0.26;
+          mask-image: linear-gradient(to top, black 0%, transparent 82%);
+        }
+
+        .trustlens-core {
+          position: absolute;
+          left: 50%;
+          top: 46%;
+          width: min(62vw, 760px);
+          aspect-ratio: 1;
+          transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-12deg);
+          transform-style: preserve-3d;
+        }
+
+        .trustlens-ring,
+        .trustlens-prism,
+        .trustlens-scanline {
+          position: absolute;
+          inset: 50%;
+          transform-style: preserve-3d;
+        }
+
+        .trustlens-ring {
+          width: 100%;
+          height: 100%;
+          border: 2px solid rgba(164, 230, 255, 0.72);
+          border-radius: 50%;
+          box-shadow:
+            0 0 28px rgba(0, 209, 255, 0.45),
+            inset 0 0 32px rgba(0, 209, 255, 0.18);
+          transform: translate(-50%, -50%);
+          animation: trustlens-spin 16s linear infinite;
+        }
+
+        .trustlens-ring-b {
+          width: 74%;
+          height: 74%;
+          border-color: rgba(220, 184, 255, 0.6);
+          transform: translate(-50%, -50%) rotateY(64deg);
+          animation-duration: 12s;
+          animation-direction: reverse;
+        }
+
+        .trustlens-ring-c {
+          width: 48%;
+          height: 48%;
+          border-color: rgba(255, 255, 255, 0.52);
+          transform: translate(-50%, -50%) rotateX(74deg);
+          animation-duration: 9s;
+        }
+
+        .trustlens-prism {
+          width: 28%;
+          height: 28%;
+          border: 1px solid rgba(255, 255, 255, 0.55);
+          background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(0, 209, 255, 0.06)),
+            linear-gradient(45deg, rgba(0, 209, 255, 0.18), rgba(220, 184, 255, 0.14));
+          box-shadow:
+            0 0 54px rgba(0, 209, 255, 0.45),
+            inset 0 0 32px rgba(255, 255, 255, 0.12);
+          transform: translate(-50%, -50%) rotateX(58deg) rotateZ(45deg);
+          animation: trustlens-pulse 4s ease-in-out infinite;
+        }
+
+        .trustlens-scanline {
+          width: 82%;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(164, 230, 255, 0.95), transparent);
+          transform: translate(-50%, -50%) rotateZ(12deg);
+          box-shadow: 0 0 22px rgba(0, 209, 255, 0.8);
+          animation: trustlens-scan 5s ease-in-out infinite;
+        }
+
+        @keyframes trustlens-spin {
+          from {
+            rotate: 0deg;
+          }
+          to {
+            rotate: 360deg;
+          }
+        }
+
+        @keyframes trustlens-pulse {
+          0%,
+          100% {
+            opacity: 0.64;
+            scale: 0.92;
+          }
+          50% {
+            opacity: 1;
+            scale: 1.08;
+          }
+        }
+
+        @keyframes trustlens-scan {
+          0%,
+          100% {
+            opacity: 0;
+            translate: 0 -180px;
+          }
+          50% {
+            opacity: 1;
+            translate: 0 180px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .trustlens-core {
+            top: 42%;
+            width: 120vw;
+          }
+        }
+      `}</style>
     </header>
   );
 }
